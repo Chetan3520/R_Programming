@@ -1,0 +1,138 @@
+---
+title: "import_export"
+author: "Chetan Salunke"
+date: "30/10/2021"
+---
+
+#Comment: "Get Working_directory"
+```{r}
+getwd()
+```
+#Importing the csv files in R from the current working dirctory:
+
+```{r}
+df=read.csv("BOOk2.csv",header = TRUE);df
+```
+
+#Importing csv file using the location path of the file:
+
+```{r}
+df1=read.csv("C:/Users/DELL/OneDrive/Desktop/Sample_data.csv")
+head(df1)
+```
+#Importing the Delimited file in the R:
+If a file with a separator character that is different from a 
+tab, a comma or a semicolon, you can always use the.
+```{r}
+df2=read.delim("C:/Users/DELL/OneDrive/Documents/data.txt",header=FALSE,sep="")
+head(df2)
+```
+##importing Text File in the R:
+If a file with a separator character that is a 
+tab, a comma or a semicolon, you can always use the.
+```{r}
+df=read.table("C:/Users/DELL/OneDrive/Desktop/table.txt",header=FALSE)
+df
+
+```
+#import Excel file into the R:
+```{r}
+library(readxl)
+df=read_excel("C:/Users/DELL/OneDrive/Documents/Excel Files/Tutorial5.xlsx");df
+```
+#skip rows and use default columns name
+```{r}
+library(readxl)
+df=read_excel("C:/Users/DELL/OneDrive/Documents/Excel Files/Tutorial5.xlsx",skip=1,col_names = FALSE)
+
+```
+#Exporting files in the R:
+1)Exporting the CSV
+```{r}
+library(dplyr)
+  df=mtcars %>%
+  select(mpg,disp,gear)%>%
+  group_by(gear) %>%
+  summarize(mean_mpg=mean(mpg),mean_disp=mean(disp))
+  write.csv(df,"table_cars")
+```
+#export Excel file
+```{r}
+library(xlsx)
+write.xlsx(df,"excel_table_cars")
+```
+#Some important functions in the R:
+#1)Cat Function:
+i)returns character string in the readable format.
+ii)combine character values and print them to the screen.
+iii) Let understand the difference between cat and print function.
+```{r}
+str="Chetan Rajaram Salunke"
+print(str)
+cat(str)
+s="Programming with data \n is fun"
+cat(s)
+cat(s,"with R")
+```
+
+```{r}
+cat(1:12,sep = "_")
+print("\n")
+cat(month.name[1:4],sep = "-")
+```
+
+```{r}
+m=matrix(1:9,byrow=TRUE,nrow=3)
+print("print using print function")
+print(m)
+cat("print using cat funtion \n",m)
+```
+
+#2)Sink function:
+Export(Write) the data in multiple forms such as text and CSV files.
+#As Text File:
+```{r}
+df=datasets::airquality
+sink("C:/Users/DELL/OneDrive/Documents/R-Studio/summary_airquality.txt")
+summary(df)
+``` 
+#AS CSV File:
+```{r}
+df1=datasets::cars    #or data(cars)
+sink( "C:/Users/DELL/OneDrive/Documents/R-Studio/cars.csv")
+df1
+sink()
+```
+#3)Format Fucntion.
+This is especially useful when printing numbers and quantities under 
+different formats.
+
+```{r}
+format(160.234569)
+format(13.7,nsmall=3)
+```
+
+
+```{r}
+d=diag(5);d
+ 
+```
+#to find the inverse of the matrix
+
+
+```{r}
+a=matrix(c(3,2,3,8),byrow = TRUE,ncol=2);a
+det(a)
+solve(a)
+```
+
+
+
+
+
+
+
+
+
+
+
